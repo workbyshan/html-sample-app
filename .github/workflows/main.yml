@@ -27,7 +27,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             cd /var/www/html
             git clone https://github.com/workbyshan/html-sample-app.git
-            mkdir-p /var/www/html/phantom            
+            mkdir -p /var/www/html/phantom            
             sudo systemctl reload nginx
             echo "the git clone process is complete"
             pwd
