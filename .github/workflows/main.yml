@@ -25,7 +25,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            git clone https://github.com/workbyshan/workbyshan/html-sample-app
+            git clone https://github.com/workbyshan/html-sample-app.git
             cd /var/www/html
             mkdir-p phantom            
             sudo systemctl reload nginx
