@@ -30,7 +30,7 @@ jobs:
             cd deploy
             git clone https://github.com/workbyshan/html-sample-app.git
             echo "///the git clone process is complete///"
-            sudo cp -r  /home/ubuntu/html-sample-app /var/www/html/phantom
+            sudo cp -r  /home/ubuntu/deploy/html-sample-app /var/www/html/phantom
             echo "///copy done successfully///"
             cd /var/www/html/phantom
             pwd
