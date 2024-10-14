@@ -26,11 +26,11 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             mkdir -p /home/ubuntu/deploy
-            mkdir -p /var/www/html/phantom
+            sudo mkdir -p /var/www/html/phantom
             cd deploy
             git clone https://github.com/workbyshan/html-sample-app.git
             echo "///the git clone process is complete///"
-            cp -r  /home/ubuntu/html-sample-app /var/www/html/phantom
+            sudo cp -r  /home/ubuntu/html-sample-app /var/www/html/phantom
             echo "///copy done successfully///"
             cd /var/www/html/phantom
             pwd
