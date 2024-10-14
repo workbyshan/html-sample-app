@@ -1,0 +1,35 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Change this to your desired branch
+  pull_request:
+    branches:  
+       - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v3
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+            git clone https://github.com/workbyshan/workbyshan/html-sample-app
+            cd /var/www/html
+            mkdir-p phantom            
+            sudo systemctl reload nginx
+            echo "the git clone process is complete"
+            pwd
+            # Any other deployment commands you need
+          EOF
